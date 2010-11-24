@@ -29,6 +29,8 @@ GEM
       activesupport (= 3.0.3)
     activesupport (3.0.3)
     arel (2.0.3)
+    authlogic (2.1.6)
+      activesupport
     autotest (4.3.2)
     builder (2.1.2)
     diff-lcs (1.1.2)
@@ -91,6 +93,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  authlogic
   autotest
   factory_girl_rails
   haml
