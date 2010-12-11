@@ -1,6 +1,8 @@
 class CreateItems < ActiveRecord::Migration
   def self.up
     create_table :items do |t|
+      t.integer :number, :count
+      t.string :name, :color
 
       t.timestamps
     end
