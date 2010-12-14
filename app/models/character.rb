@@ -10,9 +10,7 @@ class Character < ActiveRecord::Base
   # Associations
   belongs_to :owner, :class_name => "User"
   belongs_to :character_class
-
   belongs_to :account
-  belongs_to :user
 
   # has_many :killed_bosses, :through => :kills, :class_name => 'Boss', :source => :boss
   has_many :attendances, :class_name => 'Attendee', :dependent => :destroy

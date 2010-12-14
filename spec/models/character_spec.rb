@@ -166,12 +166,6 @@ describe Character do
     character_2.should_not be_valid
   end
   
-  it "should be able to (but not required to) be associated with a specific user" do
-    user = Factory.build :user
-    character = Factory.build :character, :user => user
-    character.user.should eql(user)
-  end
-  
   it "should have attended multiple raids" do
     character = Factory.build :character
     raid = Factory.create :raid, :characters => [character]
