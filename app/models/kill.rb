@@ -3,10 +3,8 @@ class Kill < ActiveRecord::Base
   belongs_to :raid
   belongs_to :boss
   
-  # Named scopes
-  named_scope :during_raid, lambda { |raid| { :conditions => { :raid_id => raid.id } } }
-
-  named_scope :present, :conditions => { :present => true }
-  named_scope :wait_listed, :conditions => { :present => false }
-  
+  # Scopes
+  scope(:during_raid, lambda { |raid| where(:raid_id => raid.id) })
+  scope :present, where(:present => true)
+  scope :wait_listed, where(:present => false)
 end
