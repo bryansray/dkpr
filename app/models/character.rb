@@ -12,7 +12,6 @@ class Character < ActiveRecord::Base
   belongs_to :character_class
   belongs_to :account
 
-  # has_many :killed_bosses, :through => :kills, :class_name => 'Boss', :source => :boss
   has_many :attendances, :class_name => 'Attendee', :dependent => :destroy
   has_many :kills, :through => :attendances
   has_many :raids, :through => :attendances

@@ -1,0 +1,383 @@
+body
+  :font-family Tahoma
+  :font-size 9pt
+  :background-color #000
+
+div.chart
+  :display none
+
+table
+  thead
+    :background-color #E5ECF9
+    th
+      :padding 3px
+      :text-align left
+  tbody
+    tr
+      &.odd
+        :background-color #efefef
+      &.even
+        :bacground-color #cecece
+      td
+        :padding 3px
+
+.container
+  :border-left 1px solid #fff
+  :border-right 1px solid #fff
+  :background-color #fff
+  :width 1100px
+  :margin 0 auto
+  
+  #header
+    :border-bottom 1px solid #000
+    :background-color #BDD2FF
+    
+    ul
+      :margin-bottom 0
+
+  .main.content
+    :margin .5em
+
+.horizontal_list
+  &#attendee_list
+    :border 1px solid #6DAF76
+    :margin .5em .5em
+    :padding .5em
+    :width 773px
+    :float left
+    :-moz-border-radius 4px
+    :background-color #DFFFE3
+  
+    .item
+      :border 1px solid #6DAF76
+      :background-color #fff
+
+  &#waiting_list
+    :border 1px solid #8F080E
+    :margin .5em 0
+    :padding .5em
+    :float left
+    :width 275px
+    :-moz-border-radius 4px
+    :background-color #FFDFE6
+  
+    .item
+      :width 120px
+      :border 1px solid #8F080E
+      :background-color #fff
+  .item
+    :border 1px solid #cecece
+    :float left
+    :width 138px
+    :line-height 16px
+    :height 16px
+    :overflow hidden
+    :vertical-align middle
+    :margin 2px
+    :padding 3px 5px
+    :-moz-border-radius 3px
+    
+    &.wait_listed
+      :border 1px solid #8F080E
+      :background-color #FFDFE6
+      
+    &.present
+      :border 1px solid #6DAF76
+      :background-color #DFFFE3
+
+    .content
+      :float left
+      :background-color transparent
+      :margin 0
+
+    .actions
+      :float right
+      :display none
+
+.charts
+  :text-align center
+  :margin 5px 0
+  
+  .chart
+    :text-align center
+    :margin 4px
+    :float left
+    
+    embed
+      :border 1px solid #ccc
+  
+// Classes
+.boss
+  a
+    :color #000
+
+.paladin
+  :color #F48CBA
+  a
+    :color #F48CBA
+
+.shaman
+  :color #1A3CAA
+  a
+    :color #1A3CAA
+    
+.death_knight
+  :color #C41F3B
+  a
+    :color #C41F3B
+
+.druid
+  :color #FF7C0A
+  a
+    :color #FF7C0A
+    
+.hunter
+  :color #AAD372
+  a
+    :color #AAD372
+    
+.mage
+  :color #68CCEF
+  a
+    :color #68CCEF
+    
+.priest
+  :color #aaa
+  a
+    :color #aaa
+    
+.rogue
+  :color #FFF468
+  a
+    :color #FFF468
+    
+.warlock
+  :color #9382C9
+  a
+    :color #9382C9
+    
+.warrior
+  :color #C69B6D
+  a
+    :color #C69B6D
+
+// Coloring
+.spent
+  :color red
+.earned
+  :color green
+
+// Boss
+.content
+  .boss_info
+    :margin .5em
+    :padding .5em
+    :-moz-border-radius 4px
+    :background-color #efefef
+    :border 1px solid #cecece
+
+.ui-draggable
+  :cursor move
+
+p.info 
+  :margin-bottom 0
+  :text-align right
+  :font-style italic
+  :color #666
+
+// Kills
+.kills
+  .attendees
+    h5
+      :margin-bottom 4px
+
+// Miscellaneous
+.right
+  :float right
+
+.left
+  :float left
+
+.clearfix:after
+  :content "."
+  :display block
+  :height 0
+  :clear both
+  :visibility hidden
+  
+// Attendees
+#attendees_add, #items_add
+  :border 2px solid #ccc
+  :border-top 0
+  :display none
+  :padding 3px
+  :margin 0 7px 5px
+  :-moz-border-radius-bottomright 3px
+  :-moz-border-radius-bottomleft 3px
+  :-webkit-border-bottom-right-radius 3px
+  :-webkit-border-bottom-left-radius 3px
+  :background-color #efefef
+  
+  .item
+    :background-color #fff
+  
+.character_classes
+  .character_class
+    :float left
+    :width 150px
+    :margin 5px
+    :border 1px solid #666
+    :-moz-border-radius 3px
+
+    h4
+      :margin-bottom 0px
+      :border-bottom 1px solid #000
+      :padding 5px
+      
+    .character
+      :padding 5px
+      :background-color #efefef
+
+      a
+        :float left
+        :width 120px
+      .earned
+        :float right
+          
+// Box
+.box
+  :background-color transparent
+  :border 1px solid #ccc
+  :padding 0
+  :margin-bottom 1em
+  :-moz-border-radius 4px
+  
+  .header
+    :background-color #E5ECF9
+    :padding .5em
+    :border-bottom 1px solid #ccc
+    
+  .content
+    :background-color #fff
+    :margin .5em
+    :margin-top 0
+    
+
+  .actions
+    :text-align right
+    
+.content
+  :margin-bottom 1em
+
+table
+  :width 100%
+
+.heading
+  :padding 5px 10px
+  :border 1px solid #cecece
+  :-moz-border-radius 3px
+  :-webkit-border-radius 3px
+  :background-color #E5ECF9
+  :margin-bottom 5px
+  :line-height 20px
+
+  .actions
+    :float right
+    img
+      :width 20px
+      
+      
+#tags-container
+  :margin .5em 0
+  :background-color #efefef
+  :border 1px dotted #ddd
+  :color #666
+  :padding .65em 1em
+  :-moz-border-radius 4px
+  
+  .tag-list-panel
+
+  .tag-editor-actions
+    :display inline
+
+  .tag-editor-inputs
+    :display none
+  
+    
+    .notes
+      :color #888
+      :font-size 92%
+      :font-style italic
+      :margin-top .3em
+
+  .tag-list
+    :display inline
+    
+
+  .removeable-tag
+    :display inline
+    :margin-right 1em
+    :white-space nowrap
+    :line-height 1.8em
+    :background-image none
+    :background-color transparent
+    
+    .remove-tag
+      img
+        :vertical-align middle
+
+form.character_adjustment
+  input[type="text"]
+    :color green
+    :width 60px
+    :font-size 13pt
+    :text-align center
+    :font-weight bold
+    
+td h2.adjustment
+  :border-bottom 1px dotted
+  :display inline
+  :cursor pointer
+  
+.wowhead_tooltip
+  :border 1px solid #fff
+  :padding 5px
+  :-moz-border-radius 3px
+  :background-color #18194F
+  :opacity .89
+  :left 30em
+  :position absolute
+  :color white
+  
+  table
+    :color white
+
+  .q
+    :color #FFD100 !important
+
+  .q0, .q0 a
+    :color #9D9D9D !important
+
+  .q1, .q1 a
+    :color #FFFFFF !important
+
+  .q2, .q2 a
+    :color #1EFF00 !important
+
+  .q3, .q3 a
+    :color #0070DD !important
+
+  .q4, .q4 a
+    :color #A335EE !important
+
+  .q5, .q5 a
+    :color #FF8000 !important
+
+  .q6, .q6 a
+    :color #E5CC80 !important
+
+  .q7, .q7 a
+    :color #FF0000 !important
+
+  .q8, .q8 a
+    :color #FFFF98 !important

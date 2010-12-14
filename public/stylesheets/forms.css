@@ -1,0 +1,26 @@
+form label {
+  width: 180px;
+  vertical-align: middle;
+  font-size: 16px;
+  line-height: 28px;
+  color: #666666;
+  text-align: right;
+  float: left;
+  margin-right: 0.5em; }
+form .text_field {
+  clear: both;
+  margin: 0.5em 0; }
+form .select {
+  margin: 5px 0; }
+
+.note {
+  color: #bbbbbb;
+  margin: 0 1em 0.5em; }
+
+#items_add form#new_drop {
+  padding-top: 5px;
+  margin: 0 5px 5px; }
+  #items_add form#new_drop label {
+    float: none;
+    line-height: inherit;
+    margin: 0 0.5em; }
