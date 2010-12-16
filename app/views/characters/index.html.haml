@@ -1,0 +1,47 @@
+%h3.heading Leader Boards
+
+.character_classes.clearfix
+  - @character_classes.each do |cc|
+    - unless cc.characters.empty?
+      .character_class.clearfix{ :class => cc.name.gsub(" ", "").underscore }
+        %h4= cc.name
+        - cc.characters.each do |character|
+          .clearfix.character
+            = link_to character.name, character_path(character)
+            %span.earned= character.current_dkp
+
+%h3.heading Character Standings
+
+%table.characters{ :style => "width: 100%;" }
+  %thead
+    %tr
+      %th
+      %th Name
+
+      %th Class
+      %th Earned
+      %th Spent
+      %th Adjustment
+      %th Current
+      %th Last Raid
+      %th Last Loot
+      %th Last 30 Days
+      %th Lifetime
+
+  %tbody
+    - @characters.each do |character|
+      %tr
+        %td= character.id
+        %td= link_to character.name, character_path(character)
+
+        %td{ :class => character.character_class.name.downcase }= character.character_class.name
+        %td{ :style => "color: green;" }= character.current_dkp
+        %td{ :style => "color: red;" }= character.spent
+        %td{ :style => "color: green;" }= "0"
+        %td{ :style => "color: green;" }= "0"
+  
+        %td= character.raids.last.created_at.strftime "%m/%d/%Y" unless character.raids.empty?
+        %td= character.drops.last.created_at.strftime "%m/%d/%Y" unless character.drops.empty?
+        / %td{ :style => "color: green;" }= "#{character.raids.within(30.days.ago).percent}% (#{character.raids.within(30.days.ago).size})"
+        %td{ :style => "color: green;" }
+        %td{ :style => "color: green;" }= "#{character.lifetime_attendance_percentage}% (#{character.raids.size})"
