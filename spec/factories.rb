@@ -18,6 +18,7 @@ Factory.define :character do |c|
   c.level 80
 
   c.association :account
+  c.association :character_class
 end
 
 Factory.sequence :name do |n|
@@ -57,5 +58,5 @@ Factory.define :drop do |d|
 end
 
 Factory.define :character_class do |c|
-  c.name "Mage"
+  c.sequence(:name) { |a| "CharacterClass.#{a}" }
 end

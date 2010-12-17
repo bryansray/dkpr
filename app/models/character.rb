@@ -46,6 +46,10 @@ class Character < ActiveRecord::Base
     attendances.inject(0) { |sum, attendance| sum += attendance.hours_attended * 5 }
   end
   
+  def spent
+    drops.sum(:price)
+  end
+  
   # Note - Not sure about this calculation
   def boss_kill_dkp
     kills.size * 5
