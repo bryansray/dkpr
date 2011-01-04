@@ -16,7 +16,7 @@ describe Raid do
     raid.should have(2).attendees
   end
   
-  it "should have killed bosses" do
+  it "should have killed a boss" do
     boss = Boss.new
     raid = Factory.create(:raid)
     Factory.create(:attempt, :boss => boss, :raid => raid, :successful => true)
@@ -125,6 +125,15 @@ describe Raid do
     raid.characters.should include(character)
   end
   
+  it "should have characters who did not attend the raid" do
+    character_attended = Factory.build(:character)
+    character_unattended = Factory.build(:character)
+    raid = Factory.build(:raid, :characters => [character_attended])
+    
+    raid.should have(1).characters
+    raid.characters.should have(1).inverse
+  end
+  
   it "should be able to tell whether or not a character attended a raid" do
     character = Factory.build :character
     raid = Factory.create :raid, :characters => [character]
@@ -177,8 +186,6 @@ describe Raid do
     @raid.add_attendee!(character_1)
     @raid.add_attendee!(character_2)
     @raid.add_attendee!(character_3)
-    
-    pp @raid.character_classes
     
     @raid.should have(2).character_classes
   end
