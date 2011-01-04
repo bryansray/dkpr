@@ -1,0 +1,107 @@
+- content_for :head do
+  %script{ :src => "/javascripts/charts.js", :type => "text/javascript" }
+  = javascript_include_tag 'wowhead'
+
+.box.clearfix
+  .header.clearfix
+    %h3.left{ :style => "vertical-align: middle;"}= @raid.name
+    %h3.right== Raid lasted #{distance_of_time_in_words @raid.started_at, @raid.ended_at}
+  .actions{ :style => "margin: .5em;" }
+    %span= link_to "Remove Raid", raid_path(@raid), :method => :delete, :confirm => "Are you sure you want to delete this raid?"
+
+
+
+%h3.clearfix.heading{ :style => "margin-bottom: 0;" }
+  .actions.right
+    = link_to image_tag('icons/report_24x24.png', :alt => "View Chart", :title => "View Chart"), "#class_chart", :rel => "facebox"
+    = link_to image_tag('icons/user_add.png', :alt => "Add Attendees", :title => "Add Attendees"), new_raid_attendee_path(@raid), :id => "add_attendee"
+  == #{pluralize(@raid.attendees.size, 'Attendee')}
+
+.content.attendees.clearfix
+  #attendees_add.horizontal_list.clearfix
+    - @inverse_attendees.each do |character|
+      .item.attendee{ :id => "character_#{character.id}", :class => character.character_class.name.downcase.gsub(" ", "_") }
+        .content
+          = link_to character.name, character_path(character)
+        .actions
+          %span= link_to image_tag('icons/add.png'), raid_attendees_path(@raid, :character_id => character.id), :class => "add_attendee"
+
+  #attendees_list.horizontal_list.clearfix
+    - @attendees.each do |attendee|
+      = render :partial => 'attendees/attendee', :object => attendee, :locals => { :raid => @raid }
+
+.charts.clearfix
+  #class_chart.chart
+    %strong Text displayed when the user doesn't have Flash. You might want to display a simple table with the population, search engines and visitor without flash would love that.
+    %p Text to be displayed
+
+  #loot_grouped_by_class.chart
+    %strong Text displayed when the user doesn't have Flash. You might want to display a simple table with the population, search engines and visitor without flash would love that.
+    %p Text to be displayed
+
+:javascript
+  var so = new SWFObject("/charts/ampie/ampie.swf", "class_chart", "425", "380", "8", "#efefef");
+  so.addVariable("path", "/charts/ampie/");
+  so.addVariable("settings_file", escape("/charts/ampie/ampie_settings.xml,/charts/custom_settings.xml"));
+  so.addVariable("data_file", escape("#{raid_attendees_path(@raid, :format => :xml)}"));
+  so.addVariable("additional_chart_settings", "<settings><labels><label><x>250</x><y>25</y><text_size>18</text_size><text>Class Distribution</text></label></labels></settings>");
+  so.addVariable("preloader_color", "#000000");
+
+  var so2 = new SWFObject("/charts/ampie/ampie.swf", "loot_grouped_by_class", "425", "380", "8", "#efefef");
+  so2.addVariable("path", "/charts/ampie/");
+  so2.addVariable("settings_file", escape("/charts/ampie/ampie_settings.xml"));
+  so2.addVariable("data_file", escape("#{raid_drops_path(@raid, :format => :xml)}"));
+  so2.addVariable("additional_chart_settings", "<settings><labels><label><x>250</x><y>25</y><text_size>18</text_size><text>Class Loot Distribution</text></label></labels></settings>");
+  so2.addVariable("preloader_color", "#000000");
+
+  so.write("class_chart");
+  so2.write("loot_grouped_by_class");
+
+
+%h3.clearfix.heading== #{pluralize(@raid.bosses.size, 'Boss')} Killed
+
+.content
+  .horizontal_list.clearfix
+    - @raid.kills.each do |kill|
+      .item
+        .content.boss
+          = link_to truncate(kill.boss.name, :length => 20), raid_kill_path(@raid, kill)
+        .actions
+          = link_to image_tag('icons/delete.png'), raid_kill_path(@raid, kill), :class => "remote destroy"
+
+%h3.heading.clearfix{ :style => "margin-bottom: 0;" }
+  .actions.right
+    = link_to image_tag('icons/report_24x24.png', :alt => "View Chart", :title => "View Chart"), "#loot_grouped_by_class", :rel => "facebox"
+    = link_to image_tag('icons/add_24x24.png'), new_raid_drop_path(@raid), :id => "add_item_button"
+  == #{pluralize(@raid.drops.size, 'Drop')}
+
+.items.content.clearfix
+  #items_add
+    - form_for [@raid, Drop.new] do |f|
+      = f.label :item_id, "Item"
+      = text_field :drop, :item, :style => "width: 180px"
+      = f.label :character_name, 'awarded to'
+      = text_field :character, :name, :style => "width: 150px"
+      = f.label :price, "for"
+      = f.text_field :price, :style => "width: 50px"
+      = label_tag "DKP"
+      = f.submit "Add"
+      = f.submit "Add with Detail ..."
+
+
+/ %table.drops
+/   %thead
+/     %tr
+/       %th Buyer
+/       %th Item
+/       %th Boss
+/       %th Price
+/       %th
+/   %tbody
+/     - @raid.drops.all(:include => [{:attendee, :character}], :order => "characters.name").each_with_index do |drop, i|
+/       %tr{ :class => i % 2 == 0 ? 'odd' : 'even' }
+/         %td{ :class => drop.attendee.character.character_class.name.downcase }= link_to drop.attendee.character.name, character_path(drop.attendee.character)
+/         %td= link_to drop.item.name, item_path(drop.item), :class => "wowhead"
+/         %td= link_to drop.boss.name, boss_path(drop.boss)
+/         %td.spent= drop.price
+/         %td{ :style => "text-align: right;" }= link_to image_tag('icons/delete.png', :alt => "Remove Item", :title => "Remove Item"), raid_drop_path(@raid, drop), :class => "destroy_item"

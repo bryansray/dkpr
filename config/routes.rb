@@ -1,4 +1,10 @@
 Dkpr::Application.routes.draw do
+  get "attendees/index"
+
+  get "attendees/show"
+
+  get "attendees/new"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -16,9 +22,28 @@ Dkpr::Application.routes.draw do
 
   # Sample resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
+  resource :user_session
 
   resources :characters
-  resources :raids
+  resources :raids do
+    resources :attendees do
+      put 'toggle_waitlist'
+    end
+    
+    resources :drops
+    resources :kills
+  end
+
+  resources :items
+  resources :bosses
+  resources :tags
+  resources :taggings
+
+  resources :kills do
+    member do
+      put 'toggle_present'
+    end
+  end
   
   # Sample resource route with options:
   #   resources :products do
@@ -55,7 +80,7 @@ Dkpr::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => "welcome#index"
+  root :to => "characters#index"
 
   # See how all your routes lay out with "rake routes"
 

@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Raid do
   before(:each) do
-    @raid = Factory.build(:raid)
+    @raid = Factory.create(:raid)
   end
   
   it "should not be valid without a raid name" do
@@ -35,7 +35,7 @@ describe Raid do
     @raid.should have(2).drops
   end
 
-  it "should be able to calculate a dkp value for the number of bosses killed", :focus => true do
+  it "should be able to calculate a dkp value for the number of bosses killed" do
     boss_1, boss_2 = Factory.create(:boss), Factory.create(:boss)
 
     raid = Factory.create(:raid)    
@@ -165,5 +165,21 @@ describe Raid do
     account = Factory.build :account
     raid = Factory.build :raid, :account => account
     raid.account.should == account
+  end
+
+  it "should be able to tell you how many character classes attended the raid", :focus => true do
+    paladin = Factory.create(:character_class)
+    mage = Factory.create(:character_class)
+    character_1 = Factory.create(:character, :character_class => paladin)
+    character_2 = Factory.create(:character, :character_class => paladin)
+    character_3 = Factory.create(:character, :character_class => mage)
+    
+    @raid.add_attendee!(character_1)
+    @raid.add_attendee!(character_2)
+    @raid.add_attendee!(character_3)
+    
+    pp @raid.character_classes
+    
+    @raid.should have(2).character_classes
   end
 end

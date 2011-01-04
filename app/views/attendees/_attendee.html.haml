@@ -1,0 +1,9 @@
+.item.attendee{ :id => "attendee_#{attendee.id}", :class => "#{attendee.character.character_class.name.downcase} #{attendee.present_for_all_kills? ? 'present' : 'wait_listed' }" }
+  .actions
+    - if attendee.character.raids.include?(raid)
+      = link_to image_tag('icons/delete.png'), raid_attendee_path(raid, attendee), :class => "remove_attendee", :title => "Remove Attendee"
+      = link_to image_tag('icons/time_16x16.png', :title => "Toggle Waitlist"), attendee_toggle_waitlist_path(raid, attendee), :class => "toggle_attendee_waitlist"
+    - else
+      %span= link_to image_tag('icons/add.png'), raid_attendees_path(raid, :character_id => attendee.character.id), :class => "add_attendee", :title => "Add Attendee"
+  .content
+    = link_to attendee.character.name, raid_attendee_path(raid, attendee)

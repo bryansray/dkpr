@@ -1,0 +1,6 @@
+= image_tag('icons/tag_blue.png', :align => "absmiddle")
+
+#tag_list.tag-list= tag_list_panel.tag_list.sort
+
+.tag-editor-actions
+  = link_to tag_list_panel.tags.empty? ? "Add Tags" : "edit tags", "#", :class => "manage-tags"

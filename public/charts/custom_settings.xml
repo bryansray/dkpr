@@ -1,0 +1,39 @@
+<settings>
+  	<font>Tahoma</font>                                               <!-- [Arial] (font name) use device fonts, such as Arial, Times New Roman, Tahoma, Verdana... -->
+  	<text_size>10</text_size>                                     <!-- [11] (Number) text size of all texts. Every text size can be set individually in the settings below -->
+  	<text_color>#000000</text_color>                                   <!-- [#000000] (hex color code) main text color. Every text color can be set individually in the settings below-->
+	
+	<pie>
+		<inner_radius>40</inner_radius>
+		<height>20</height>
+		<angle>30</angle>
+		<gradient>radial</gradient>
+		<gradient_ratio>-50,0,0,-50</gradient_ratio>
+	</pie>
+	
+	<animation>
+		<start_time>2</start_time>                                <!-- [0] (Number) fly-in time in seconds. Leave 0 to appear instantly -->
+		<start_effect>strong</start_effect>                       <!-- [bounce] (bounce, regular, strong) -->
+		<start_radius></start_radius>                             <!-- [500%] (Number / Number%) -->
+		<start_alpha></start_alpha>                               <!-- [0] (Number) -->
+		<sequenced>true</sequenced>                               <!-- [false] (true / false) Whether the slices should appear all together or one after another -->                
+		<pull_out_on_click></pull_out_on_click>                   <!-- [true] (true / false) whether to pull out slices when user clicks on them (or on legend entry) -->
+		<pull_out_time>1.5</pull_out_time>                        <!-- [0] (number) pull-out time (then user clicks on the slice) -->
+		<pull_out_effect>Bounce</pull_out_effect>                 <!-- [bounce] (bounce, regular, strong) -->
+		<pull_out_radius></pull_out_radius>                       <!-- [20%] (Number / Number%) how far pie slices should be pulled-out then user clicks on them -->
+		<pull_out_only_one></pull_out_only_one>                   <!-- [false] (true / false) if set to true, when you click on any slice, all other slices will be pushed in -->        
+	</animation>
+	
+	<background>
+    	<color>#efefef</color>                                           <!-- [#FFFFFF] (hex color code) Separate color codes with comas for gradient -->
+		<border_color>#000000</border_color>
+    	<border_alpha>100</border_alpha>                             <!-- [0] (0 - 100) -->
+	</background>
+	
+  	<legend>                                                    <!-- LEGEND -->
+    	<values>                                                  <!-- VALUES -->          
+      		<enabled>true</enabled>                                     <!-- [false] (true / false) whether to show values near legend entries or not -->
+     	</values>    
+  	</legend>  
+
+</settings>

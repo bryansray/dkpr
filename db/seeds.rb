@@ -18,8 +18,27 @@ character_classes << CharacterClass.create(:name => "Shaman", :color => "#2459FF
 character_classes << CharacterClass.create(:name => "Warlock", :color => "#9482C9")
 character_classes << CharacterClass.create(:name => "Warrior", :color => "#C79C6E")
 
-1.upto(10) do
+bosses = []
+bosses << Factory.create(:boss)
+bosses << Factory.create(:boss)
+bosses << Factory.create(:boss)
+bosses << Factory.create(:boss)
+bosses << Factory.create(:boss)
+
+raids = []
+raids << Factory.create(:raid)
+
+character = nil
+1.upto(5) do |i|
   user = Factory.create(:user)
+  boss_id = i
+  boss_id -= 5 if i < 5
+  boss = bosses[boss_id]
   
   character = Factory.create(:character, :owner => user, :character_class => character_classes[Random.new.rand(character_classes.count)])
+  attendance = Factory.create(:attendee, :character => character, :raid => raids.first, :joined_at => raids.first.started_at)
+  drop = Factory.create(:drop, :attendee => attendance, :boss => boss, :raid => raids.first, :item => Factory.create(:item), :price =>  Random.new.rand(20..150), :looted_at => Time.now)
+  kill = Factory.create(:kill, :boss => boss, :attendee => attendance, :raid => raids.first)
+  attempt = Factory.create(:attempt, :raid => raids.first, :boss => boss, :characters => [character], :successful => Random.new.rand(0..1), :started_at => raids.first.started_at + 10.minutes, :ended_at => raids.first.started_at + 15.minutes)
 end
+

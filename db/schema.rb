@@ -119,6 +119,7 @@ ActiveRecord::Schema.define(:version => 20101211043425) do
 
   create_table "raids", :force => true do |t|
     t.string   "name"
+    t.string   "zone"
     t.integer  "account_id"
     t.text     "xml"
     t.text     "note"

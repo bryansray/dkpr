@@ -1,0 +1,20 @@
+- content_for :head do
+  = javascript_include_tag 'waiting_list'
+
+%h2
+  = link_to @attendee.character.name, character_path(@attendee.character)
+  raided 
+  = link_to @attendee.raid.name, raid_path(@attendee.raid) 
+  on 
+  = @attendee.raid.started_at.strftime("%m/%d/%Y")
+
+%h3.heading== #{@attendee.kills.size} Kills (#{@attendee.kills.present.size} present / #{@attendee.kills.wait_listed.size} wait listed)
+
+.attendees.clearfix
+  #attendee_list.horizontal_list.droppable
+    - @attendee.kills.present.each do |kill|
+      .item.draggable{ :id => "kill_#{kill.id}" }= link_to kill.boss.name, toggle_present_kill_path(kill)
+
+  #waiting_list.horizontal_list.droppable
+    - @attendee.kills.wait_listed.each do |kill|
+      .item.draggable{ :id => "kill_#{kill.id}" }= link_to kill.boss.name, toggle_present_kill_path(kill)

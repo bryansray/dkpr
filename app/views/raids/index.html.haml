@@ -1,0 +1,25 @@
+%h3.heading Raid Listings
+
+%table.raids
+  %thead
+    %tr
+      %th Date
+      %th Name
+      %th Zone
+      %th Boss Kills
+      %th Total Attendees
+      %th Drops
+      %th Earnable DKP
+      %th DKP Spent
+
+  %tbody
+    - @raids.each do |raid|
+      %tr
+        %td= raid.started_at.strftime "%m/%d/%Y"
+        %td= link_to raid.name, raid_path(raid)
+        %td= raid.zone
+        %td= "raid.bosses_killed.size"
+        %td= raid.attendees.size
+        %td= raid.drops.size
+        %td.earned= raid.earnable
+        %td.spent= raid.spent_dkp

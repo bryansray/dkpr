@@ -1,0 +1,20 @@
+- content_for :head do
+  = javascript_include_tag 'tag_applicator'
+  
+#tags-container.tags-container
+  .tag-list-panel{ :id => "tag-list-panel-#{applicator.id}" }
+    = render :partial => "tags/tag_list_panel", :object => applicator
+    
+  .tag-editor-inputs{ :id => "tag-editor-inputs-#{applicator.id}" }
+    %div{ :id => "tag_list-removeable-tag-list-panel-#{applicator.id}" }
+      = render :partial => "tags/edit_tag_panel", :collection => applicator.taggings
+      
+    #tag-editor-actions.tag-editor-actions
+      .notes (separate multiple tags with commas)
+      
+      - form_for :tags, applicator, :url => taggings_path, :html => {:id => "taggings_form"} do |f|
+        = hidden_field :applicator, :id, :value => applicator.id
+        = hidden_field :applicator, :class, :value => applicator.class
+
+        = text_field :tags, :list
+        = f.submit "Add Tags"

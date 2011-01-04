@@ -14,7 +14,7 @@ $.ajaxSetup({
 
 // Attach all javascript functionality when the DOM is ready
 jQuery(document).ready(function() {
-	jQuery('ul.sf-menu').superfish();
+/*	jQuery('ul.sf-menu').superfish();
 	jQuery('a[rel*=facebox]').facebox();
 
 	$(".add_attendee").attach(AddAttendeeHandler);
@@ -31,18 +31,21 @@ jQuery(document).ready(function() {
 	$("form.character_adjustment").attach(CharacterAdjustmentFormHandler);
 	$("form.new_drop").attach(RaidAddDropFormHandler);
 	
+	*/
 	$("#add_attendee").click(function() {
 		$("#attendees_add").slideToggle('slow');
 		return false;
 	});
 	
+	/*
 	$("#add_item_button").click(function() {
 		$("#items_add").slideToggle('slow');
 		return false;
 	});
+	*/
 });
 
-RaidAddDropFormHandler = $.klass({
+/*RaidAddDropFormHandler = $.klass({
 	onsubmit: function(submit) {
 		var data = this.element.serializeArray();
 		var $this_form = this.element;
@@ -209,3 +212,4 @@ AttendeeActions = $.klass({
 	}
 	
 });
+*/

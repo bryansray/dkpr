@@ -5,6 +5,6 @@ class Kill < ActiveRecord::Base
   
   # Scopes
   scope(:during_raid, lambda { |raid| where(:raid_id => raid.id) })
-  scope :present, where(:present => true)
-  scope :wait_listed, where(:present => false)
+  scope(:present, where(:present => true))
+  scope(:wait_listed, where(:present => false))
 end

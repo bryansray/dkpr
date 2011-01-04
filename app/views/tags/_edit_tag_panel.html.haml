@@ -1,0 +1,3 @@
+%span.removeable-tag{ :id => "delete-#{edit_tag_panel.id}" }
+  = edit_tag_panel.tag.name
+  = link_to image_tag("icons/icon-remove.gif"), tagging_path(edit_tag_panel), :class => "remove-tag"

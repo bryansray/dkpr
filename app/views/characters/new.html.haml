@@ -1,0 +1,19 @@
+.box
+  .header
+    %h3 Create a new character
+  .content
+    - form_for @character do |f|
+      .text_field
+        = f.label :name
+        = f.text_field :name
+    
+      .text_field
+        = f.label :level
+        = f.text_field :level
+    
+      .select
+        = f.label :character_class
+        = f.select :character_class_id, CharacterClass.find(:all, :order => :name).collect{ |cc| [cc.name, cc.id] }
+    
+      .actions
+        = f.submit "Create Character"

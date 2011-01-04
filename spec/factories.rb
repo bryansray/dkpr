@@ -34,6 +34,7 @@ Factory.define :raid do |r|
 end
 
 Factory.define :item do |i|
+  i.sequence(:name) { |n| "Item #{n}" }
   i.number 123
 end
 
@@ -51,12 +52,19 @@ Factory.define :attendee do |a|
 end
 
 Factory.define :boss do |b|
+  b.sequence(:name) { |n| "Boss.Name.#{n}" }
 end
 
 Factory.define :drop do |d|
-  d.price 20
+  d.price Random.new.rand(20..150)
 end
 
 Factory.define :character_class do |c|
   c.sequence(:name) { |a| "CharacterClass.#{a}" }
+end
+
+Factory.define :kill do |k|
+  k.association :attendee
+  k.association :raid
+  k.association :boss
 end

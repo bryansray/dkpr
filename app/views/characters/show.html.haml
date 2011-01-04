@@ -1,0 +1,54 @@
+%table{ :style => "margin-bottom: 0;" }
+  %tr
+    %td
+      %h2{ :class => @character.character_class.name }== #{@character.name}
+    %td{ :style => "text-align: right;" }
+      - form_for :adjustment, @adjustment, :url => [@character, @adjustment], :html => { :class => "character_adjustment", :style => "display: none;" } do |f|
+        = f.text_field :amount, :value => @character.current_dkp
+        %h2.earned{ :style => "display: inline;" } DKP
+      %h2.adjustment.earned
+        %span.value== #{@character.current_dkp} 
+        DKP
+      .actions{ :style => "margin: .5em;"}
+        = link_to "Delete Character", character_path(@character), :confirm => "Are you sure you want to remove this character from the system?", :method => :delete
+
+= render :partial => "tags/applicator", :object => @character
+
+%h3.heading Attended Raids
+
+.content
+  %table
+    %thead
+      %th Raid
+      %th Boss Kills
+      %th Raided At
+      %th Earned
+
+    %tbody
+      - @attendances.each_with_index do |attendance, index|
+        %tr{ :class => index % 2 == 0 ? 'odd' : 'even' }
+          %td= link_to attendance.raid.name, raid_path(attendance.raid)
+          %td= attendance.raid.kills.size
+          %td= attendance.raid.started_at.strftime "%m/%d/%Y"
+          %td.earned= attendance.earned
+
+
+%h3.heading Purchased Items
+
+.content
+  %table
+    %thead
+      %th Item
+      %th Raid
+      %th Dropped By
+      %th Dropped On
+      %th Price
+  
+    %tbody
+      - @character.drops.each do |drop|
+        %tr
+          %td= link_to drop.item.name, item_path(drop.item)
+          %td= link_to drop.raid.name, raid_path(drop.raid)
+          %td= link_to drop.boss.name, boss_path(drop.boss)
+          %td= drop.looted_at.strftime "%m/%d/%Y"
+          %td{ :style => "color: red;" }= drop.price

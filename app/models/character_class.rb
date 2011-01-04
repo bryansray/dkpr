@@ -4,5 +4,4 @@ class CharacterClass < ActiveRecord::Base
   
   # Associations
   has_many :characters, :order => "characters.name"
-
 end

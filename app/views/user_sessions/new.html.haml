@@ -1,0 +1,25 @@
+%h3 Login Form
+
+%table
+  %tr
+    %td
+      - form_for @user_session, :url => user_session_path do |f|
+        = f.error_messages
+        .text_field.clearfix
+          = f.label :login
+          = f.text_field :login
+
+        .password_field.clearfix
+          = f.label :password
+          = f.password_field :password
+  
+        .text_field.clearfix
+          = f.check_box :remember_me
+          = f.label :remember_me
+  
+        = f.submit "Log In"
+    %td
+      %p 
+        Don't have an account yet? Please feel free to 
+        = link_to "Sign Up", signup_path
+        for your free beta account

@@ -4,7 +4,7 @@ body {
   background-color: black; }
 
 div.chart {
-  display: none; }
+  display: inherit; }
 
 table thead {
   background-color: #e5ecf9; }
@@ -87,8 +87,6 @@ table tbody tr td {
     text-align: center;
     margin: 4px;
     float: left; }
-    .charts .chart embed {
-      border: 1px solid #cccccc; }
 
 .boss a {
   color: black; }
