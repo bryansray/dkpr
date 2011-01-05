@@ -126,12 +126,11 @@ describe Raid do
   end
   
   it "should have characters who did not attend the raid" do
-    character_attended = Factory.build(:character)
-    character_unattended = Factory.build(:character)
-    raid = Factory.build(:raid, :characters => [character_attended])
+    character_attended = Factory.create(:character)
+    character_unattended = Factory.create(:character)
+    raid = Factory.create(:raid, :characters => [character_attended])
     
-    raid.should have(1).characters
-    raid.characters.should have(1).inverse
+    raid.should have(1).characters_that_did_not_attend
   end
   
   it "should be able to tell whether or not a character attended a raid" do
