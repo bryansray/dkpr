@@ -65,7 +65,7 @@
     - @raid.kills.each do |kill|
       .item
         .content.boss
-          = link_to truncate(kill.boss.name, :length => 20), raid_kill_path(@raid, kill)
+          = link_to truncate(kill.name, :length => 20), raid_kill_path(@raid, kill)
         .actions
           = link_to image_tag('icons/delete.png'), raid_kill_path(@raid, kill), :class => "remote destroy"
 
