@@ -21,8 +21,11 @@ describe RaidsController do
     let(:raid) { mock_model(Raid) }
     
     before(:each) do
+      attendee = mock_model(Attendee)
+
       Raid.stub!(:find).and_return(raid)
       raid.stub!(:attendees)
+      raid.stub!(:characters_that_did_not_attend)
     end
     
     it "should be successful" do
@@ -42,6 +45,15 @@ describe RaidsController do
       raid.should_receive(:attendees).and_return(attendees)
       get 'show', :id => 1
       assigns[:attendees].should == attendees
+    end
+    
+    it "should find all of the characters who did not attend the raid", :focus => true do
+      raid.should_receive(:characters_that_did_not_attend).and_return([])
+      get 'show', :id => 1
+    end
+    
+    it "should assign all the characters who did not attend the raid to the associated view" do
+      
     end
   end
 end

@@ -6,6 +6,6 @@ class RaidsController < ApplicationController
   def show
     @raid = Raid.find(params[:id])
     @attendees = @raid.attendees
-    @inverse_attendees = []
+    @inverse_attendees = @raid.characters_that_did_not_attend
   end
 end
