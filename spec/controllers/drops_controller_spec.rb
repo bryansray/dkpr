@@ -4,49 +4,42 @@ describe DropsController do
 
   describe "GET 'index'" do
     it "should be successful" do
-      get 'index'
+      get 'index', :raid_id => 1
       response.should be_success
     end
   end
 
   describe "GET 'show'" do
     it "should be successful" do
-      get 'show'
+      get 'show', :raid_id => 1, :id => 1
       response.should be_success
     end
   end
 
   describe "GET 'update'" do
     it "should be successful" do
-      get 'update'
+      get 'update', :raid_id => 1, :id => 1
       response.should be_success
     end
   end
 
   describe "GET 'edit'" do
     it "should be successful" do
-      get 'edit'
+      get 'edit', :raid_id => 1, :id => 1
       response.should be_success
     end
   end
 
   describe "GET 'new'" do
     it "should be successful" do
-      get 'new'
+      get 'new', :raid_id => 1
       response.should be_success
     end
   end
 
   describe "GET 'create'" do
     it "should be successful" do
-      get 'create'
-      response.should be_success
-    end
-  end
-
-  describe "GET 'delete'" do
-    it "should be successful" do
-      get 'delete'
+      get 'create', :raid_id => 1
       response.should be_success
     end
   end
