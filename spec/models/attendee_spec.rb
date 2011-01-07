@@ -233,14 +233,6 @@ describe Attendee do
   it "should be able to calculate all the of dkp" do
     @attendee.earned.should == 20
   end
-  
-  it "should be able to list all the characters who did *not* attend the raid" do
-    raid = Factory.create(:raid)
-    character_1 = Factory.create(:character, :name => "Virtual")
-    character_2 = Factory.create(:character, :name => "Foo")
-    attendee = Attendee.create :raid => raid, :character => character_1
-    raid.characters.inverse.should == [character_2]
-  end
 
   it "should automatically add the attendee to boss kills after saving" do
     pending "Refactor this shitty test ..."
