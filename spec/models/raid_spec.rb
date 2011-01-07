@@ -165,7 +165,6 @@ describe Raid do
       attempt.save
     end
 
-    # RAILS_DEFAULT_LOGGER.debug("*** EXECUTING SQL ...")
     raid.should have(2).reserves
   end
 

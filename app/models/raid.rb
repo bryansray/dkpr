@@ -14,11 +14,8 @@ class Raid < ActiveRecord::Base
   has_many :drops, :dependent => :destroy
 
   has_many :attempts  
-  has_many :bosses, :through => :attempts
-
-  # has_many :kills, :group => :boss_id, :dependent => :destroy
   has_many :kills, :through => :attempts, :source => :boss, :conditions => { :attempts => { :successful => true } }
-  has_many :bosses, :through => :attempts, :source => :boss, :conditions => { :attempts => { :successful => true } }, :class_name => 'Boss'
+  has_many :bosses, :through => :attempts, :source => :boss, :class_name => 'Boss'
   has_many :reserves, :through => :attempts, :group => "participants.character_id"
   
   # Methods
