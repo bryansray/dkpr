@@ -1,10 +1,4 @@
 Dkpr::Application.routes.draw do
-  get "attendees/index"
-
-  get "attendees/show"
-
-  get "attendees/new"
-
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
